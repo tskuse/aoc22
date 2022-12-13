@@ -60,3 +60,29 @@ fn find_top_n_total_calories(elves: &Vec<Elf>, n: usize) -> usize {
     summed_calories.sort_by(|a, b| b.cmp(a));
     summed_calories.iter().take(n).sum::<usize>()
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_find_most_calories_carried() {
+        let elves = vec![
+            Elf { calories: vec![1, 1] },
+            Elf { calories: vec![1, 3, 5] },
+            Elf { calories: vec![3, 4] }
+        ];
+        assert_eq!(9, find_most_calories_carried(&elves))
+    }
+
+    #[test]
+    fn test_find_top_n_total_calories() {
+        let elves = vec![
+            Elf { calories: vec![1, 1] },
+            Elf { calories: vec![1, 3, 5] },
+            Elf { calories: vec![3, 4] },
+            Elf { calories: vec![10, 5, 1]}
+        ];
+        assert_eq!(32, find_top_n_total_calories(&elves, 3))
+    }
+}
